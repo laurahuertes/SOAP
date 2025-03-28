@@ -12,6 +12,25 @@
         </xs:complexType>
     </xs:element>
 
+
+    <xs:element name="getAuthenticateRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAuthenticateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="codeResponse" type="xs:string"/>
+                <xs:element name="user" type="tns:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="getUserResponse">
         <xs:complexType>
             <xs:sequence>
@@ -24,8 +43,11 @@
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
             <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
             <xs:element name="email" type="xs:string"/>
             <xs:element name="address" type="tns:address"/>
+            <xs:element name="dateExpirationPass" type="xs:string"/>
+            <xs:element name="dateLastLoggin" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     

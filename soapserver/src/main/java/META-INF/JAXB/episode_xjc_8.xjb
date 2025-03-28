@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por Eclipse Implementation of JAXB v3.0.0 
+Visite https://eclipse-ee4j.github.io/jaxb-ri 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2025.03.28 a las 12:34:49 PM CET 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://www.neesis.es/soapserver/ws/user">
+    <schemaBindings map="false">
+      <package name="es.neesis.soapserver.ws.user"/>
+    </schemaBindings>
+    <bindings scd="tns:getUserRequest">
+      <class ref="es.neesis.soapserver.ws.user.GetUserRequest"/>
+    </bindings>
+    <bindings scd="tns:getAuthenticateRequest">
+      <class ref="es.neesis.soapserver.ws.user.GetAuthenticateRequest"/>
+    </bindings>
+    <bindings scd="tns:getAuthenticateResponse">
+      <class ref="es.neesis.soapserver.ws.user.GetAuthenticateResponse"/>
+    </bindings>
+    <bindings scd="~tns:user">
+      <class ref="es.neesis.soapserver.ws.user.User"/>
+    </bindings>
+    <bindings scd="tns:getUserResponse">
+      <class ref="es.neesis.soapserver.ws.user.GetUserResponse"/>
+    </bindings>
+    <bindings scd="~tns:address">
+      <class ref="es.neesis.soapserver.ws.user.Address"/>
+    </bindings>
+  </bindings>
+</bindings>
+

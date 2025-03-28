@@ -25,7 +25,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="user" type="{http://www.neesis.es/soapserver/ws/user}user"/&gt;
+ *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +37,63 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "user"
+    "username",
+    "password"
 })
-@XmlRootElement(name = "getUserResponse")
-public class GetUserResponse {
+@XmlRootElement(name = "getAuthenticateRequest")
+public class GetAuthenticateRequest {
 
     @XmlElement(required = true)
-    protected User user;
+    protected String username;
+    @XmlElement(required = true)
+    protected String password;
 
     /**
-     * Obtiene el valor de la propiedad user.
+     * Obtiene el valor de la propiedad username.
      * 
      * @return
      *     possible object is
-     *     {@link User }
+     *     {@link String }
      *     
      */
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * Define el valor de la propiedad user.
+     * Define el valor de la propiedad username.
      * 
      * @param value
      *     allowed object is
-     *     {@link User }
+     *     {@link String }
      *     
      */
-    public void setUser(User value) {
-        this.user = value;
+    public void setUsername(String value) {
+        this.username = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad password.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Define el valor de la propiedad password.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPassword(String value) {
+        this.password = value;
     }
 
 }
