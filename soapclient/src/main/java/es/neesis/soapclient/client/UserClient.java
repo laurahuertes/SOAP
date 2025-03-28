@@ -2,18 +2,71 @@ package es.neesis.soapclient.client;
 
 import es.neesis.soapclient.ws.user.GetUserRequest;
 import es.neesis.soapclient.ws.user.GetUserResponse;
+import es.neesis.soapclient.ws.user.User;
+import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+import java.net.URL;
+
+@Component
 public class UserClient extends WebServiceGatewaySupport {
 
-    public GetUserResponse getUser(int id) {
+    public void getUserAndConvertEmailToWords(int userId) throws Exception {
+        // Crear la petición
         GetUserRequest request = new GetUserRequest();
-        request.setId(id);
+        request.setId(userId);
 
-        return (GetUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+        // Llamar al servidor SOAP (interno)
+        GetUserResponse response = (GetUserResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/ws", request);
+
+        // Obtener usuario
+        User user = response.getUser();
+        if (user == null) {
+            System.out.println("Usuario no encontrado.");
+            return;
+        }
+
+        // Obtener email y calcular suma ASCII
+        String email = user.getEmail();
+        int asciiSum = email.chars().sum();
+        System.out.println("Suma de ASCII del email: " + asciiSum);
+
+        // Consumir el servicio público NumberConversion
+        URL wsdlUrl = new URL("https://www.dataaccess.com/webservicesserver/NumberConversion.wso?WSDL");
+        QName qname = new QName("http://www.dataaccess.com/webservicesserver/", "NumberConversion");
+        Service service = Service.create(wsdlUrl, qname);
+
+        NumberConversionSoapType soap = service.getPort(NumberConversionSoapType.class);
+        String result = soap.numberToWords(asciiSum);
+
+        System.out.println("Número en palabras: " + result);
+    }
+
+    public GetUserResponse getUser(int i) {
+        GetUserRequest request = new GetUserRequest();
+        request.setId(i);
+
+        GetUserResponse response = (GetUserResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/ws", request);
+
+        return response;
+    }
+
+
+    // Interfaz del servicio SOAP externo
+    @WebService(targetNamespace = "http://www.dataaccess.com/webservicesserver/", name = "NumberConversionSoapType")
+    public interface NumberConversionSoapType {
+        @WebMethod(operationName = "NumberToWords")
+        String numberToWords(@WebParam(name = "ubiNum") int ubiNum);
     }
 
     public AuthenticateResponse authenticateUser(String username, String password) {

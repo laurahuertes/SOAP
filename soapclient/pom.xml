@@ -26,6 +26,20 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 
+		<!-- JAX-WS para consumir servicios SOAP externos -->
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>rt</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>wsdl4j</groupId>
 			<artifactId>wsdl4j</artifactId>
