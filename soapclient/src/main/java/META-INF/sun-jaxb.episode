@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
+      
+    <!--
+
+Este archivo ha sido generado por Eclipse Implementation of JAXB v2.3.7 
+Visite https://eclipse-ee4j.github.io/jaxb-ri 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2024.03.20 a las 08:51:29 AM CET 
+
+  -->
+      
+    <bindings xmlns:tns="http://www.neesis.es/soapserver/ws/user" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.neesis.soapclient.ws.user"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="tns:getUserRequest">
+                  
+            <class ref="es.neesis.soapclient.ws.user.GetUserRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:getUserResponse">
+                  
+            <class ref="es.neesis.soapclient.ws.user.GetUserResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:user">
+                  
+            <class ref="es.neesis.soapclient.ws.user.User"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:address">
+                  
+            <class ref="es.neesis.soapclient.ws.user.Address"/>
+                
+        </bindings>
+          
+    </bindings>
+    
+</bindings>
