@@ -19,24 +19,7 @@ import java.net.URL;
 @Component
 public class UserClient extends WebServiceGatewaySupport {
 
-    public void getUserAndConvertEmailToWords(int userId) throws Exception {
-        // Crear la petición
-        GetUserRequest request = new GetUserRequest();
-        request.setId(userId);
-
-        // Llamar al servidor SOAP (interno)
-        GetUserResponse response = (GetUserResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://localhost:8080/ws", request);
-
-        // Obtener usuario
-        User user = response.getUser();
-        if (user == null) {
-            System.out.println("Usuario no encontrado.");
-            return;
-        }
-
-        // Obtener email y calcular suma ASCII
-        String email = user.getEmail();
+    public void callNumbersToWordsService(String email) throws Exception {
         int asciiSum = email.chars().sum();
         System.out.println("Suma de ASCII del email: " + asciiSum);
 
@@ -69,14 +52,14 @@ public class UserClient extends WebServiceGatewaySupport {
         String numberToWords(@WebParam(name = "ubiNum") int ubiNum);
     }
 
-    public AuthenticateResponse authenticateUser(String username, String password) {
+    public GetAuthenticateResponse authenticateUser(String username, String password) {
         String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes(StandardCharsets.UTF_8));
 
-        AuthenticateRequest request = new AuthenticateReuqest();
+        GetAuthenticateRequest request = new GetAuthenticateRequest();
         request.setUsername(username);
         request.setPassword(encodedPassword);
 
-        AuthenticateResponse response = (GetUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+        GetAuthenticateResponse response = (GetUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
 
         if ("OK".equals(response.getStatus())) {
             System.out.println("Login correcto. Usuario: " + response.getUser().getUsername());
