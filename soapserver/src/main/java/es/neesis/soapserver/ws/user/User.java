@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por Eclipse Implementation of JAXB v3.0.0 
 // Visite https://eclipse-ee4j.github.io/jaxb-ri 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2025.03.28 a las 01:30:19 PM CET 
+// Generado el: 2025.03.28 a las 01:44:46 PM CET 
 //
 
 
@@ -29,8 +29,6 @@ import jakarta.xml.bind.annotation.XmlType;
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="address" type="{http://www.neesis.es/soapserver/ws/user}address"/&gt;
- *         &lt;element name="dateExpirationPass" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="dateLastLoggin" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -45,9 +43,7 @@ import jakarta.xml.bind.annotation.XmlType;
     "username",
     "password",
     "email",
-    "address",
-    "dateExpirationPass",
-    "dateLastLoggin"
+    "address"
 })
 public class User {
 
@@ -60,10 +56,6 @@ public class User {
     protected String email;
     @XmlElement(required = true)
     protected Address address;
-    @XmlElement(required = true)
-    protected String dateExpirationPass;
-    @XmlElement(required = true)
-    protected String dateLastLoggin;
 
     /**
      * Obtiene el valor de la propiedad id.
@@ -175,54 +167,6 @@ public class User {
      */
     public void setAddress(Address value) {
         this.address = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad dateExpirationPass.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDateExpirationPass() {
-        return dateExpirationPass;
-    }
-
-    /**
-     * Define el valor de la propiedad dateExpirationPass.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDateExpirationPass(String value) {
-        this.dateExpirationPass = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad dateLastLoggin.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDateLastLoggin() {
-        return dateLastLoggin;
-    }
-
-    /**
-     * Define el valor de la propiedad dateLastLoggin.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDateLastLoggin(String value) {
-        this.dateLastLoggin = value;
     }
 
 }

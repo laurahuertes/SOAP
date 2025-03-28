@@ -46,8 +46,6 @@
             <xs:element name="password" type="xs:string"/>
             <xs:element name="email" type="xs:string"/>
             <xs:element name="address" type="tns:address"/>
-            <xs:element name="dateExpirationPass" type="xs:string"/>
-            <xs:element name="dateLastLoggin" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     

@@ -3,6 +3,8 @@ package es.neesis.soapclient.client;
 import es.neesis.soapclient.ws.user.GetUserRequest;
 import es.neesis.soapclient.ws.user.GetUserResponse;
 import es.neesis.soapclient.ws.user.User;
+import es.neesis.soapserver.ws.user.GetAuthenticateRequest;
+import es.neesis.soapserver.ws.user.GetAuthenticateResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
@@ -52,20 +54,24 @@ public class UserClient extends WebServiceGatewaySupport {
         String numberToWords(@WebParam(name = "ubiNum") int ubiNum);
     }
 
-    public GetAuthenticateResponse authenticateUser(String username, String password) {
+    public GetAuthenticateResponse authenticateUser(String username, String password) throws Exception {
         String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes(StandardCharsets.UTF_8));
 
         GetAuthenticateRequest request = new GetAuthenticateRequest();
         request.setUsername(username);
         request.setPassword(encodedPassword);
 
-        GetAuthenticateResponse response = (GetUserResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+        GetAuthenticateResponse response = (GetAuthenticateResponse) getWebServiceTemplate().marshalSendAndReceive(request);
 
-        if ("OK".equals(response.getStatus())) {
+        if ("OK".equals(response.getCodeResponse())) {
             System.out.println("Login correcto. Usuario: " + response.getUser().getUsername());
-            callNumbersToWordsService(response.getUser().getEmail());
+            try {
+                callNumbersToWordsService(response.getUser().getEmail());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         } else {
-            System.out.println("Error: " + response.getMessage());
+            System.out.println(response.getCodeResponse());
         }
 
         return response;
